@@ -205,6 +205,7 @@ public class signup3 extends JFrame implements ActionListener {
                     String q2 = "insert into login values('"+formnum+"', '"+cardn+"', '"+pinn+"');";
                     c.s.executeUpdate(q1);
                     c.s.executeUpdate(q2);
+                    String q3 = "insert into totalcash values('"+pinn+"', '500');";
                     setVisible(false);
                     new Login().setVisible(true);
                 }

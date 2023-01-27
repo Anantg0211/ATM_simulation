@@ -16,8 +16,6 @@ public class transact extends JFrame implements ActionListener {
     transact(String pino){
         this.pinnum= pino;
         setLayout(null);
-
-        setResizable(false); // this disable the maximize button
         setBounds(300, 0, 900, 900);
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/atm.jpg"));
         Image i2 = i1.getImage().getScaledInstance(900, 900, Image.SCALE_DEFAULT);
@@ -136,11 +134,12 @@ public class transact extends JFrame implements ActionListener {
         ex.setForeground(Color.black);
         ex.setBackground(Color.white);
 
-        JLabel extra = new JLabel("<");
+        JButton extra = new JButton("<");
         l.add(extra);
         extra.setBounds(530, 520, 55, 30);
         extra.setFont(new Font("Arial", Font.BOLD, 20));
-        extra.setForeground(Color.white);
+        extra.setForeground(Color.black);
+        extra.setBackground(Color.white);
 
         setUndecorated(true); // this function is to remove the upper control panel of frame
         setVisible(true);
@@ -151,17 +150,19 @@ public class transact extends JFrame implements ActionListener {
             setVisible(false);
             new Login().setVisible(true);
         }else if(ae.getSource() == cwithdrawl){
-
+            setVisible(false);
+            new withdrawl(pinnum).setVisible(true);
         }else if(ae.getSource() == changepin){
 
         }else if(ae.getSource() == minis){
 
         }else if(ae.getSource() == cdeposit){
-
+            setVisible(false);
+            new Deposit(pinnum).setVisible(true);
         }else if(ae.getSource() == fastc){
 
         }else if(ae.getSource() == checkbalance){
-
+            
         }
     }
     public static void main(String[] args) {
