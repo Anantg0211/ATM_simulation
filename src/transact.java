@@ -1,8 +1,11 @@
+import com.mysql.cj.jdbc.result.ResultSetImpl;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.sql.ResultSet;
 
 public class transact extends JFrame implements ActionListener {
     String pinnum;
@@ -162,7 +165,18 @@ public class transact extends JFrame implements ActionListener {
         }else if(ae.getSource() == fastc){
 
         }else if(ae.getSource() == checkbalance){
-            
+            Connect c = new Connect();
+            try {
+               String s = "select amount from totalcash where pin = '"+pinnum+"';";
+               ResultSet rs = c.s.executeQuery(s);
+               String amount = "";
+               while(rs.next()){
+                   amount = rs.getString(1);
+               }
+               JOptionPane.showMessageDialog(null, "your remaining balance is Rs "+amount);
+            }catch (Exception ex){
+                System.out.println(ex);
+            }
         }
     }
     public static void main(String[] args) {
