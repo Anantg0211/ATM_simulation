@@ -131,7 +131,7 @@ public class withdrawl extends JFrame implements ActionListener {
                     String prevamount = "";
                     ResultSet rs = c.s.executeQuery(q1);
                     while(rs.next()){
-                        prevamount = rs.getString(2);
+                        prevamount = rs.getString(1);
                     }
                     if(Integer.parseInt(am) > Integer.parseInt(prevamount)){
                         JOptionPane.showMessageDialog(null, "not have enough credit");
