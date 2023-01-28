@@ -2,15 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.util.Date;
 
-public class withdrawl extends JFrame implements ActionListener {
+public class Pinchange extends JFrame implements ActionListener {
     String pin;
-    JTextField amount;
+    JTextField newpin;
     JButton okay;
     JButton cancel;
-    withdrawl(String pin){
+    Pinchange(String pin){
         this.pin = pin;
         setLayout(null);
         setResizable(false); // this disable the maximize button
@@ -22,24 +20,26 @@ public class withdrawl extends JFrame implements ActionListener {
         add(l);
         l.setBounds(0, 0, 900, 900);
 
-        JLabel l1 = new JLabel("Enter the amount you want to withdraw : ");
+        JLabel l1 = new JLabel("Enter the new pin : ");
         l.add(l1);
-        l1.setBounds(170, 300, 400, 30);
+        l1.setBounds(250, 300, 400, 30);
         l1.setFont(new Font("Arial", Font.BOLD, 17));
         l1.setForeground(Color.lightGray);
 
-        JLabel l2 = new JLabel("Rs : ");
-        l.add(l2);
-        l2.setFont(new Font("Arial", Font.BOLD, 20));
-        l2.setBounds(230, 340, 50, 20);
-        l2.setForeground(Color.lightGray);
+        newpin = new JTextField();
+        l.add(newpin);
+        newpin.setOpaque(false);
+        newpin.setFont(new Font("Arial", Font.BOLD, 20));
+        newpin.setBounds(280, 340, 100, 20);
+        newpin.setForeground(Color.lightGray);
 
-        amount = new JTextField();
-        l.add(amount);
-        amount.setOpaque(false);
-        amount.setFont(new Font("Arial", Font.BOLD, 20));
-        amount.setBounds(280, 340, 150, 20);
-        amount.setForeground(Color.lightGray);
+        okay = new JButton(">");
+        l.add(okay);
+        okay.addActionListener(this);
+        okay.setBounds(90, 417, 55, 30);
+        okay.setFont(new Font("Arial", Font.BOLD, 20));
+        okay.setForeground(Color.black);
+        okay.setBackground(Color.white);
 
         JLabel okayy = new JLabel("Yes");
         l.add(okayy);
@@ -52,14 +52,6 @@ public class withdrawl extends JFrame implements ActionListener {
         canc.setBounds(440, 420, 100, 20);
         canc.setForeground(Color.white);
         canc.setFont(new Font("Arial", Font.BOLD, 20));
-
-        okay = new JButton(">");
-        l.add(okay);
-        okay.addActionListener(this);
-        okay.setBounds(90, 417, 55, 30);
-        okay.setFont(new Font("Arial", Font.BOLD, 20));
-        okay.setForeground(Color.black);
-        okay.setBackground(Color.white);
 
         cancel = new JButton("<");
         l.add(cancel);
@@ -118,36 +110,23 @@ public class withdrawl extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == cancel){
             setVisible(false);
-            new Login().setVisible(true);
+            new transact(pin).setVisible(true);
         }else{
-            String am = amount.getText();
-            Date d = new Date();
             Connect c = new Connect();
-            if(am.equals("")){
-                JOptionPane.showMessageDialog(null, "please enter the amount");
+            String np = newpin.getText();
+            if(np.equals("")){
+                JOptionPane.showMessageDialog(null, "Please enter a valid pin");
             }else{
                 try {
-                    String q1 = "select amount from totalcash where pin = '"+pin+"';";
-                    String prevamount = "";
-                    ResultSet rs = c.s.executeQuery(q1);
-                    while(rs.next()){
-                        prevamount = rs.getString(1);
-                    }
-                    if(Integer.parseInt(am) > Integer.parseInt(prevamount)){
-                        JOptionPane.showMessageDialog(null, "not have enough credit");
-                    }else{
-                        String q = "insert into transactions values('"+pin+"', '"+d+"', 'withdrawl', '"+am+"');";
-                        c.s.executeUpdate(q);
-                        int t1 = Integer.parseInt(prevamount);
-                        int t2 = Integer.parseInt(am);
-                        int total = t1-t2;
-                        String totalamo = Integer.toString(total);
-                        String q3 = "update totalcash set amount = '"+totalamo+"' where pin = '"+pin+"';";
-                        c.s.executeUpdate(q3);
-                        JOptionPane.showMessageDialog(null, "Withdrawal done successfully");
-                        setVisible(false);
-                        new transact(pin).setVisible(true);
-                    }
+                    String q1 = "update login set pinnumber = '"+np+"' where pinnumber = '"+pin+"';";
+                    c.s.executeUpdate(q1);
+                    String q2 = "update totalcash set pin = '"+np+"' where pin = '"+pin+"';";
+                    c.s.executeUpdate(q2);
+                    String q3 = "update transactions set pin = '"+np+"' where pin = '"+pin+"';";
+                    c.s.executeUpdate(q3);
+                    JOptionPane.showMessageDialog(null, "Your pin has been changed successfully.");
+                    setVisible(false);
+                    new transact(np).setVisible(true);
                 }catch (Exception ex){
                     System.out.println(ex);
                 }
@@ -155,6 +134,6 @@ public class withdrawl extends JFrame implements ActionListener {
         }
     }
     public static void main(String[] args) {
-        new withdrawl("");
+        new Pinchange("");
     }
 }

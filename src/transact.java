@@ -156,7 +156,8 @@ public class transact extends JFrame implements ActionListener {
             setVisible(false);
             new withdrawl(pinnum).setVisible(true);
         }else if(ae.getSource() == changepin){
-
+            setVisible(false);
+            new Pinchange(pinnum).setVisible(true);
         }else if(ae.getSource() == minis){
 
         }else if(ae.getSource() == cdeposit){
