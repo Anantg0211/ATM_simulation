@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class Pinchange extends JFrame implements ActionListener {
     String pin;
@@ -114,6 +115,7 @@ public class Pinchange extends JFrame implements ActionListener {
         }else{
             Connect c = new Connect();
             String np = newpin.getText();
+            Date d = new Date();
             if(np.equals("")){
                 JOptionPane.showMessageDialog(null, "Please enter a valid pin");
             }else{

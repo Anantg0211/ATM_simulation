@@ -134,7 +134,7 @@ public class withdrawl extends JFrame implements ActionListener {
                         prevamount = rs.getString(1);
                     }
                     if(Integer.parseInt(am) > Integer.parseInt(prevamount)){
-                        JOptionPane.showMessageDialog(null, "not have enough credit");
+                        JOptionPane.showMessageDialog(null, "Your account does not have enough credit");
                     }else{
                         String q = "insert into transactions values('"+pin+"', '"+d+"', 'withdrawl', '"+am+"');";
                         c.s.executeUpdate(q);
