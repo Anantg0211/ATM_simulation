@@ -53,7 +53,7 @@ public class Ministatement extends JFrame implements ActionListener {
         statements.setBounds(30, 110, 400, 200);
 
         try {
-            String q = "select * from transactions where pin = '"+pin+"';";
+            String q = "select * from transactions where pin = '"+pin+"' limit 5;";
             ResultSet rs = c.s.executeQuery(q);
             int t  = 1;
             while(rs.next()){
