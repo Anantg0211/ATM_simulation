@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Pinchange extends JFrame implements ActionListener {
     String pin;
-    JTextField newpin;
+    JPasswordField newpin;
     JButton okay;
     JButton cancel;
     Pinchange(String pin){
@@ -27,7 +27,7 @@ public class Pinchange extends JFrame implements ActionListener {
         l1.setFont(new Font("Arial", Font.BOLD, 17));
         l1.setForeground(Color.lightGray);
 
-        newpin = new JTextField();
+        newpin = new JPasswordField();
         l.add(newpin);
         newpin.setOpaque(false);
         newpin.setFont(new Font("Arial", Font.BOLD, 20));

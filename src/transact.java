@@ -159,12 +159,13 @@ public class transact extends JFrame implements ActionListener {
             setVisible(false);
             new Pinchange(pinnum).setVisible(true);
         }else if(ae.getSource() == minis){
-
+            new Ministatement(pinnum).setVisible(true);
         }else if(ae.getSource() == cdeposit){
             setVisible(false);
             new Deposit(pinnum).setVisible(true);
         }else if(ae.getSource() == fastc){
-
+            setVisible(false);
+            new Fastcash(pinnum).setVisible(true);
         }else if(ae.getSource() == checkbalance){
             Connect c = new Connect();
             try {
