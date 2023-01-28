@@ -31,7 +31,7 @@ public class Fastcash extends JFrame implements ActionListener {
         amount.setFont(new Font("Arial", Font.BOLD, 25));
         amount.setForeground(Color.LIGHT_GRAY);
 
-        JLabel hund = new JLabel("100");
+        JLabel hund = new JLabel("Rs 100");
         l.add(hund);
         hund.setBounds(160, 420, 142, 25);
         hund.setFont(new Font("Arial", Font.BOLD, 18));
@@ -45,9 +45,9 @@ public class Fastcash extends JFrame implements ActionListener {
         hundred.setForeground(Color.black);
         hundred.setBackground(Color.white);
 
-        JLabel fivehund = new JLabel("500");
+        JLabel fivehund = new JLabel("Rs 500");
         l.add(fivehund);
-        fivehund.setBounds(475, 420, 155, 25);
+        fivehund.setBounds(455, 420, 155, 25);
         fivehund.setFont(new Font("Arial", Font.BOLD, 18));
         fivehund.setForeground(Color.white);
 
@@ -59,7 +59,7 @@ public class Fastcash extends JFrame implements ActionListener {
         fiveh.setForeground(Color.black);
         fiveh.setBackground(Color.white);
 
-        JLabel thou = new JLabel("1,000");
+        JLabel thou = new JLabel("Rs 1,000");
         l.add(thou);
         thou.setBounds(160, 455, 142, 25);
         thou.setFont(new Font("Arial", Font.BOLD, 18));
@@ -73,9 +73,9 @@ public class Fastcash extends JFrame implements ActionListener {
         thousand.setForeground(Color.black);
         thousand.setBackground(Color.white);
 
-        JLabel twoth = new JLabel("2,000");
+        JLabel twoth = new JLabel("Rs 2,000");
         l.add(twoth);
-        twoth.setBounds(460, 455, 155, 25);
+        twoth.setBounds(440, 455, 155, 25);
         twoth.setFont(new Font("Arial", Font.BOLD, 18));
         twoth.setForeground(Color.white);
 
@@ -87,7 +87,7 @@ public class Fastcash extends JFrame implements ActionListener {
         twothous.setForeground(Color.black);
         twothous.setBackground(Color.white);
 
-        JLabel ft = new JLabel("5,000");
+        JLabel ft = new JLabel("Rs 5,000");
         l.add(ft);
         ft.setBounds(160, 490, 142, 25);
         ft.setFont(new Font("Arial", Font.BOLD, 18));
@@ -101,9 +101,9 @@ public class Fastcash extends JFrame implements ActionListener {
         fivethous.setForeground(Color.black);
         fivethous.setBackground(Color.white);
 
-        JLabel tt = new JLabel("10,000");
+        JLabel tt = new JLabel("Rs 10,000");
         l.add(tt);
-        tt.setBounds(450, 490, 155, 25);
+        tt.setBounds(430, 490, 155, 25);
         tt.setFont(new Font("Arial", Font.BOLD, 18));
         tt.setForeground(Color.white);
 
