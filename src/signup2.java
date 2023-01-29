@@ -205,9 +205,6 @@ public class signup2 extends JFrame implements ActionListener {
         }catch (Exception ae){
             System.out.println(ae);
         }
-//
     }
-    public static void main(String[] args) {
-        new signup2("");
-    }
+
 }

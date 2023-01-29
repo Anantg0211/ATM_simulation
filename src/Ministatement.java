@@ -79,7 +79,5 @@ public class Ministatement extends JFrame implements ActionListener {
             setVisible(false);
         }
     }
-    public static void main(String[] args) {
-        new Ministatement("");
-    }
+
 }

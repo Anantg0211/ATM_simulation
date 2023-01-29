@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 public class signup1 extends JFrame implements ActionListener {
+    HashSet<Character> em = new HashSet<>();
     JButton next;
     JTextField ntextf;
     JTextField fntextf;
@@ -207,6 +208,9 @@ public class signup1 extends JFrame implements ActionListener {
         String fname = fntextf.getText();
         String mname = mntextf.getText();
         String email = emailtf.getText();
+        for(int i = 0; i < email.length(); i++){
+            em.add(email.charAt(i));
+        }
         String add = addrtf.getText();
         String city = citytf.getText();
         String state = statetf.getText();
@@ -238,6 +242,9 @@ public class signup1 extends JFrame implements ActionListener {
             }
             else if(email.equals("")){
                 JOptionPane.showMessageDialog(null, "Please Enter Your Email");
+            }
+            else if(!em.contains('@') || !em.contains('.')){
+                JOptionPane.showMessageDialog(null, "Please enter a valid email");
             }
             else if(add.equals("")){
                 JOptionPane.showMessageDialog(null, "Please Enter Your Address");
@@ -271,7 +278,5 @@ public class signup1 extends JFrame implements ActionListener {
             System.out.println(ex);
         }
     }
-    public static void main(String[] args) {
-        new signup1();
-    }
+
 }

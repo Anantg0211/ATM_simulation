@@ -230,7 +230,5 @@ public class signup3 extends JFrame implements ActionListener {
             }
         }
     }
-    public static void main(String[] args) {
-        new signup3("");
-    }
+
 }
