@@ -8,6 +8,7 @@ import java.util.*;
 public class signup1 extends JFrame implements ActionListener {
     HashSet<Character> em = new HashSet<>();
     JButton next;
+    JButton cancel;
     JTextField ntextf;
     JTextField fntextf;
     JTextField mntextf;
@@ -200,82 +201,94 @@ public class signup1 extends JFrame implements ActionListener {
         next.setBackground(Color.black);
         next.setForeground(Color.white);
         next.setBounds(340, 570, 80, 20);
+
+        cancel = new JButton("Cancel");
+        add(cancel);
+        cancel.addActionListener(this);
+        cancel.setBounds(250, 570, 80, 20);
+        cancel.setBackground(Color.black);
+        cancel.setForeground(Color.white);
     }
     @Override
     public void actionPerformed(ActionEvent e){
-        String formno = ""+ randomno;
-        String name = ntextf.getText(); // this is used to get a value from textfield
-        String fname = fntextf.getText();
-        String mname = mntextf.getText();
-        String email = emailtf.getText();
-        for(int i = 0; i < email.length(); i++){
-            em.add(email.charAt(i));
-        }
-        String add = addrtf.getText();
-        String city = citytf.getText();
-        String state = statetf.getText();
-        String pincode = pintf.getText();
-        String dob = ((JTextField)(dobdc.getDateEditor().getUiComponent())).getText(); // this funct is to get date from datechooser class;
-        String gender = "";
-        if(gendm.isSelected()){ // this funct is to check which radio button is selected
-            gender = "Male";
-        }else if(gendf.isSelected()){
-            gender = "Female";
-        }
-        String marrieds = "";
-        if(single.isSelected()){
-            marrieds = "Single";
-        }else if(married.isSelected()){
-            marrieds = "Married";
-        }else if(divorced.isSelected()){
-            marrieds = "Divored";
-        }
-        try {
-            if(name.equals("")){ // these all conditions are to check whether none of the field is empty
-                JOptionPane.showMessageDialog(null, "Please Enter Your Name");
+        if(e.getSource() == cancel){
+            setVisible(false);
+            new Login().setVisible(true);
+        }else{
+            String formno = ""+ randomno;
+            String name = ntextf.getText(); // this is used to get a value from textfield
+            String fname = fntextf.getText();
+            String mname = mntextf.getText();
+            String email = emailtf.getText();
+            for(int i = 0; i < email.length(); i++){
+                em.add(email.charAt(i));
             }
-            else if(fname.equals("")){
-                JOptionPane.showMessageDialog(null, "Please Enter Your Father Name");
+            String add = addrtf.getText();
+            String city = citytf.getText();
+            String state = statetf.getText();
+            String pincode = pintf.getText();
+            String dob = ((JTextField)(dobdc.getDateEditor().getUiComponent())).getText(); // this funct is to get date from datechooser class;
+            String gender = "";
+            if(gendm.isSelected()){ // this funct is to check which radio button is selected
+                gender = "Male";
+            }else if(gendf.isSelected()){
+                gender = "Female";
             }
-            else if(mname.equals("")){
-                JOptionPane.showMessageDialog(null, "Please Enter Your Mother Name");
+            String marrieds = "";
+            if(single.isSelected()){
+                marrieds = "Single";
+            }else if(married.isSelected()){
+                marrieds = "Married";
+            }else if(divorced.isSelected()){
+                marrieds = "Divored";
             }
-            else if(email.equals("")){
-                JOptionPane.showMessageDialog(null, "Please Enter Your Email");
+            try {
+                if(name.equals("")){ // these all conditions are to check whether none of the field is empty
+                    JOptionPane.showMessageDialog(null, "Please Enter Your Name");
+                }
+                else if(fname.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter Your Father Name");
+                }
+                else if(mname.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter Your Mother Name");
+                }
+                else if(email.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter Your Email");
+                }
+                else if(!em.contains('@') || !em.contains('.')){
+                    JOptionPane.showMessageDialog(null, "Please enter a valid email");
+                }
+                else if(add.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter Your Address");
+                }
+                else if(city.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter Your City");
+                }
+                else if(state.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter Your State");
+                }
+                else if(pincode.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter Your Pin-Code");
+                }
+                else if(dob.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter Your DOB");
+                }
+                else if(gender.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter Your Gender");
+                }
+                else if(marrieds.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please Enter Your Marital Status");
+                }else{
+                    Connect c = new Connect(); // we have created an object of connection class to enter the data into table
+                    String Query = "insert into signup values ('"+formno+"', '"+name+"', '"+fname+"', '"+mname+"', '"+dob+"', '"+gender+"', '"+email+"', '"+marrieds+"', '"+add+"', '"+city+"', '"+state+"', '"+pincode+"');";
+                    // we are writing query above
+                    c.s.executeUpdate(Query); // here we are executing query
+                    setVisible(false);
+                    new signup2(formno).setVisible(true);
+                }
+            } catch (Exception ex){
+                System.out.println(ex);
             }
-            else if(!em.contains('@') || !em.contains('.')){
-                JOptionPane.showMessageDialog(null, "Please enter a valid email");
-            }
-            else if(add.equals("")){
-                JOptionPane.showMessageDialog(null, "Please Enter Your Address");
-            }
-            else if(city.equals("")){
-                JOptionPane.showMessageDialog(null, "Please Enter Your City");
-            }
-            else if(state.equals("")){
-                JOptionPane.showMessageDialog(null, "Please Enter Your State");
-            }
-            else if(pincode.equals("")){
-                JOptionPane.showMessageDialog(null, "Please Enter Your Pin-Code");
-            }
-            else if(dob.equals("")){
-                JOptionPane.showMessageDialog(null, "Please Enter Your DOB");
-            }
-            else if(gender.equals("")){
-                JOptionPane.showMessageDialog(null, "Please Enter Your Gender");
-            }
-            else if(marrieds.equals("")){
-                JOptionPane.showMessageDialog(null, "Please Enter Your Marital Status");
-            }else{
-                Connect c = new Connect(); // we have created an object of connection class to enter the data into table
-                String Query = "insert into signup values ('"+formno+"', '"+name+"', '"+fname+"', '"+mname+"', '"+dob+"', '"+gender+"', '"+email+"', '"+marrieds+"', '"+add+"', '"+city+"', '"+state+"', '"+pincode+"');";
-                // we are writing query above
-                c.s.executeUpdate(Query); // here we are executing query
-                setVisible(false);
-                new signup2(formno).setVisible(true);
-            }
-        } catch (Exception ex){
-            System.out.println(ex);
         }
     }
 
